@@ -96,7 +96,11 @@ GROUP BY
 
 ```
 
-
 ## 方法二：无mysql.help_topic表权限的情况下，使用临时表
 
 实际上就是要一张有id，且从0开始的表，表的长度要大于按字符串分割的长度
+
+
+## group_concat最大长度为1024的坑
+
+mysql group_concat默认的最大字符长度为1024，如果要拼接大量字符串，需要在concat的时候使用特殊的占位符占位，然后replace(group_concat(),'str_replace', '抽取的字符串')
